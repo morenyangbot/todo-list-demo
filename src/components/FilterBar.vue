@@ -1,7 +1,10 @@
 <template>
-  <div>
-    <div v-for="item in filters" :key="item.key" :class="{active: item.key === filter}" @click="toggleFilter(item.key)">
-      {{item.displayName}}
+  <div class="filters">
+    <div v-for="item in filters"
+         :key="item.key"
+         class="filter-item"
+         @click="toggleFilter(item.key)">
+      <div class="filter-item-inner" :class="{active: item.key === filter}">{{item.displayName}}</div>
     </div>
   </div>
 </template>

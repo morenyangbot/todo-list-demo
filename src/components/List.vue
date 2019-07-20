@@ -1,20 +1,21 @@
 <template>
-  <div>
-    <ol>
-      <li v-for="item in list" :key="item.id">
+  <ol class="main-list">
+    <li v-for="item in list" :key="item.id" class="list-item">
+      <div class="item-wrapper">
         <input type="checkbox"
                name="toggle-done"
                v-model="item.finished"
         >
         <div contenteditable
              :class="{'finished': item.finished}"
+             class="todo-item-content"
              v-text="item.value"
              @blur="(e) => handleTodoItemValueChange(item, e)"
-             @keyprss.enter="handleEnter">
+             @keypress.enter="handleEnter">
         </div>
-      </li>
-    </ol>
-  </div>
+      </div>
+    </li>
+  </ol>
 </template>
 
 <script>

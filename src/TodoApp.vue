@@ -1,8 +1,10 @@
 <template>
-  <div>
-    <Header @push="pushItem"/>
-    <List :list="filteredList"/>
-    <FilterBar :filter="filter" @toggleFilter="toggleFilter"/>
+  <div class="app-wrapper">
+    <div class="container">
+      <Header @push="pushItem"/>
+      <List :list="filteredList"/>
+      <FilterBar :filter="filter" @toggleFilter="toggleFilter"/>
+    </div>
   </div>
 </template>
 
