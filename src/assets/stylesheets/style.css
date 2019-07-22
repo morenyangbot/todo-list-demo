@@ -70,6 +70,10 @@ body {
     flex: 1;
 }
 
+.main-list .item-wrapper .create-time {
+    color: #aaa
+}
+
 .filters {
     text-align: center;
     margin-bottom: -10px;
