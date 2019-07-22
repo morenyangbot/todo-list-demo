@@ -65,12 +65,13 @@ body {
     margin: 5px 5px 2px 0;
 }
 
-.main-list .item-wrapper .todo-item-content {
-    line-height: 18px;
+.main-list .item-wrapper .todo-item-content{
+    line-height: 20px;
     flex: 1;
 }
 
 .main-list .item-wrapper .create-time {
+    line-height: 20px;
     color: #aaa
 }
 

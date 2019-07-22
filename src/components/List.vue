@@ -1,6 +1,6 @@
 <template>
   <ol class="main-list">
-    <TodoItem v-for="item in list" :key="item.id" :item="item" />
+    <TodoItem v-for="item in $store.getters.filteredTodoList" :key="item.id" :item="item" />
   </ol>
 </template>
 
@@ -10,13 +10,6 @@ export default {
   name: "TodoItemList",
   components: {
     TodoItem
-  },
-  props: {
-    list: {
-      type: Array,
-      default: () => [],
-      require: true
-    }
   }
 };
 </script>

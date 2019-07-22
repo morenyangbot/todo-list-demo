@@ -4,7 +4,7 @@
          :key="item.key"
          class="filter-item"
          @click="toggleFilter(item.key)">
-      <div class="filter-item-inner" :class="{active: item.key === filter}">{{item.displayName}}</div>
+      <div class="filter-item-inner" :class="{active: item.key === $store.getters.currentFilter}">{{item.displayName}}</div>
     </div>
   </div>
 </template>
@@ -14,11 +14,6 @@
 
   export default {
     name: "FilterBar",
-    props: {
-      filter: {
-        default: ''
-      }
-    },
     data() {
       return {
         filters: [
@@ -39,7 +34,7 @@
     },
     methods: {
       toggleFilter(filter) {
-        this.$emit('toggleFilter', filter)
+        this.$store.dispatch('updateFilter', filter)
       }
     }
   }

@@ -29,7 +29,7 @@
           finished: false,
           createTime: new Date()
         };
-        this.$emit('push', todoItem)
+        this.$store.dispatch('pushTodoItem', todoItem)
         this.textValue = ''
       }
     }

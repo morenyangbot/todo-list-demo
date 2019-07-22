@@ -1,7 +1,7 @@
 <template>
   <li class="list-item">
     <div class="item-wrapper">
-      <input type="checkbox" name="toggle-done" v-model="item.finished" />
+      <input type="checkbox" name="toggle-done" :value="item.finished" @click="e => toggleFinished(item)"/>
       <div
         contenteditable
         :class="{'finished': item.finished}"
@@ -32,10 +32,16 @@ export default {
   },
   methods: {
     handleTodoItemValueChange(item, e) {
-      item.value = e.target.innerText;
+      this.$store.dispatch("updateTodoItemText", {
+        id: item.id,
+        value: e.target.innerText
+      })
     },
     handleEnter(e) {
       e.target.blur();
+    },
+    toggleFinished(item) {
+      this.$store.dispatch("toggleTodoItemFinished", item.id)
     }
   }
 };
