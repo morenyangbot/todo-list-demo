@@ -7,7 +7,10 @@ const store = new Vuex.Store({
   state: {
     filter: () => true,
     todoList: [],
-    username: ""
+    user: {
+      username: "",
+      phone: undefined
+    }
   },
   mutations: {
     PUSH_TODO_ITEM(state, payload) {
@@ -25,7 +28,10 @@ const store = new Vuex.Store({
       item && (item.value = value)
     },
     SET_USERNAME(state, username) {
-      state.username = username
+      state.user.username = username
+    },
+    SET_USER_PHONE(state, phone) {
+      state.user.phone = phone
     }
   },
   actions: {
@@ -43,6 +49,13 @@ const store = new Vuex.Store({
     },
     setUsername({ commit }, username) {
       commit("SET_USERNAME", username)
+    },
+    setUserPhone({ commit }, phone) {
+      commit("SET_USER_PHONE", phone)
+    },
+    setUser({ commit }, { username, phone }) {
+      commit("SET_USERNAME", username);
+      commit("SET_USER_PHONE", phone)
     }
   },
   getters: {
@@ -53,8 +66,8 @@ const store = new Vuex.Store({
     currentFilter(state) {
       return state.filter
     },
-    username(state) {
-      return state.username
+    user(state) {
+      return state.user
     }
   }
 })

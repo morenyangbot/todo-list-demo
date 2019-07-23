@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from './Home.vue';
 import Index from './Index.vue'
 import TodoApp from './TodoApp.vue'
+import UserProfile from './UserProfile.vue'
 
 Vue.use(Router)
 
@@ -18,6 +19,9 @@ const routes = [
             {
                 path: 'todos',
                 component: TodoApp
+            }, {
+                path: 'user',
+                component: UserProfile
             }
         ]
     }
