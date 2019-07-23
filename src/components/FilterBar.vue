@@ -1,47 +1,42 @@
 <template>
   <div class="filters">
     <div v-for="item in filters"
-         :key="item.key"
+         :key="item.displayName"
          class="filter-item"
-         @click="toggleFilter(item.key)">
-      <div class="filter-item-inner" :class="{active: item.key === $store.getters.currentFilter}">{{item.displayName}}</div>
+         @click="toggleFilter(item)">
+      <div class="filter-item-inner" :class="{active: item.filter === $store.getters.currentFilter}">{{item.displayName}}</div>
     </div>
   </div>
 </template>
 
 <script>
-  import status from '../enums/status'
-
   export default {
     name: "FilterBar",
     data() {
       return {
         filters: [
           {
-            key: status.ALL,
-            displayName: 'ALL'
+            displayName: 'ALL',
+            filter: () => true
           },
           {
-            key: status.ACTIVE,
-            displayName: 'Active'
+            displayName: 'Active',
+            filter: item => !item.finished
           },
           {
-            key: status.COMPLETE,
-            displayName: 'Complete'
+            displayName: 'Complete',
+            filter: item => item.finished
           }
         ]
       }
     },
     methods: {
       toggleFilter(filter) {
-        this.$store.dispatch('updateFilter', filter)
+        this.$store.dispatch('updateFilter', filter.filter)
       }
     }
   }
 </script>
 
 <style scoped>
-  .active {
-    color: red
-  }
 </style>

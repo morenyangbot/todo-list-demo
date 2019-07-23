@@ -1,12 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import status from './enums/status'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    filter: '',
+    filter: () => true,
     todoList: []
   },
   mutations: {
@@ -42,15 +41,7 @@ const store = new Vuex.Store({
   getters: {
     filteredTodoList(state) {
       const { todoList, filter } = state;
-      switch (filter) {
-        case status.ACTIVE:
-          return todoList.filter(i => !i.finished);
-        case status.COMPLETE:
-          return todoList.filter(i => i.finished);
-        case status.ALL:
-        default:
-          return todoList
-      }
+      return todoList.filter(filter)
     },
     currentFilter(state) {
       return state.filter
