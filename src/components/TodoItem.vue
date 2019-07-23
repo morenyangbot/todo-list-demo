@@ -1,7 +1,12 @@
 <template>
   <li class="list-item">
     <div class="item-wrapper">
-      <input type="checkbox" name="toggle-done" :checked="item.finished" @click="e => toggleFinished(item)"/>
+      <input
+        type="checkbox"
+        name="toggle-done"
+        :checked="item.finished"
+        @click="e => toggleFinished(item)"
+      />
       <div
         contenteditable
         :class="{'finished': item.finished}"
@@ -10,7 +15,8 @@
         @blur="(e) => handleTodoItemValueChange(item, e)"
         @keypress.enter="handleEnter"
       ></div>
-      <div class="create-time">{{createDate}}</div>
+      <!-- <div class="create-time">{{createDate}}</div> -->
+      <div class="delete-item" @click="()=>handleDeleteItem(item)">×</div>
     </div>
   </li>
 </template>
@@ -35,13 +41,16 @@ export default {
       this.$store.dispatch("updateTodoItemText", {
         ...item,
         value: e.target.innerText
-      })
+      });
     },
     handleEnter(e) {
       e.target.blur();
     },
     toggleFinished(item) {
-      this.$store.dispatch("toggleTodoItemFinished", item)
+      this.$store.dispatch("toggleTodoItemFinished", item);
+    },
+    handleDeleteItem(item) {
+      this.$store.dispatch("deleteTodoItem", item)
     }
   }
 };

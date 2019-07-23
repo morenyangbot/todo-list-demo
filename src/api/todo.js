@@ -15,3 +15,7 @@ export const toggleTodoItemFinished = (todoItem) => {
 export const updateTodoItem = (todoItem) => {
     return request.put(`/todos`, todoItem)
 }
+
+export const removeTodoList = (todoItem) => {
+    return request.delete(`/todos/${todoItem.id}`)
+}

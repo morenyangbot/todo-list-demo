@@ -22,6 +22,9 @@ const store = new Vuex.Store({
     },
     SET_TODO_LIST(state, payload) {
       state.todoList = payload
+    },
+    DELETE_TODO_ITEM(state, item) {
+      state.todoList.splice(state.todoList.findIndex(item), 1)
     }
   },
   actions: {
@@ -50,6 +53,12 @@ const store = new Vuex.Store({
       TodoApi.fetchAll()
         .then(res => {
           commit("SET_TODO_LIST", res)
+        })
+    },
+    deleteTodoItem({commit}, payload) {
+      TodoApi.removeTodoList(payload)
+        .then(() => {
+          commit("DELETE_TODO_ITEM", payload)
         })
     }
   },
