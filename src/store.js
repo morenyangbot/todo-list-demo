@@ -6,7 +6,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     filter: () => true,
-    todoList: []
+    todoList: [],
+    username: ""
   },
   mutations: {
     PUSH_TODO_ITEM(state, payload) {
@@ -22,6 +23,9 @@ const store = new Vuex.Store({
     UPDATE_TODO_ITEM_TEXT(state, { id, value }) {
       const item = state.todoList.find(item => item.id === id)
       item && (item.value = value)
+    },
+    SET_USERNAME(state, username) {
+      state.username = username
     }
   },
   actions: {
@@ -36,6 +40,9 @@ const store = new Vuex.Store({
     },
     updateFilter({ commit }, payload) {
       commit("UPDATE_FILTER", payload)
+    },
+    setUsername({ commit }, username) {
+      commit("SET_USERNAME", username)
     }
   },
   getters: {
@@ -45,6 +52,9 @@ const store = new Vuex.Store({
     },
     currentFilter(state) {
       return state.filter
+    },
+    username(state) {
+      return state.username
     }
   }
 })
