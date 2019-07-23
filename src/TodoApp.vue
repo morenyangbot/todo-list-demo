@@ -19,6 +19,9 @@
       Header,
       List,
       FilterBar
+    },
+    mounted() {
+      this.$store.dispatch("fetchTodoList")
     }
   }
 </script>

@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import * as TodoApi from './api/todo'
 
 Vue.use(Vuex);
 
@@ -15,27 +16,41 @@ const store = new Vuex.Store({
     UPDATE_FILTER(state, payload) {
       state.filter = payload;
     },
-    TOGGLE_TODO_ITEM_FINISHED(state, id) {
-      const item = state.todoList.find(item => item.id === id)
-      item && (item.finished = !item.finished)
+    UPDATE_TODO_ITEM(state, newItem ) {
+      const item = state.todoList.find(item => item.id === newItem.id);
+      Object.assign(item, newItem)
     },
-    UPDATE_TODO_ITEM_TEXT(state, { id, value }) {
-      const item = state.todoList.find(item => item.id === id)
-      item && (item.value = value)
+    SET_TODO_LIST(state, payload) {
+      state.todoList = payload
     }
   },
   actions: {
     pushTodoItem({ commit }, payload) {
-      commit("PUSH_TODO_ITEM", payload)
+      TodoApi.addTodoItem(payload)
+        .then(res => {
+          commit("PUSH_TODO_ITEM", res)
+        })
     },
     toggleTodoItemFinished({ commit }, payload) {
-      commit("TOGGLE_TODO_ITEM_FINISHED", payload)
+      TodoApi.toggleTodoItemFinished(payload)
+        .then(res => {
+          commit("UPDATE_TODO_ITEM", res)
+        })
     },
     updateTodoItemText({ commit }, payload) {
-      commit("UPDATE_TODO_ITEM_TEXT", payload)
+      TodoApi.updateTodoItem(payload)
+      .then(res => {
+        commit("UPDATE_TODO_ITEM", res)
+      })
     },
     updateFilter({ commit }, payload) {
       commit("UPDATE_FILTER", payload)
+    },
+    fetchTodoList({ commit }) {
+      TodoApi.fetchAll()
+        .then(res => {
+          commit("SET_TODO_LIST", res)
+        })
     }
   },
   getters: {

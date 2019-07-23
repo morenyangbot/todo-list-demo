@@ -10,10 +10,6 @@
 </template>
 
 <script>
-  let id = 0;
-  const getId = () => {
-    return id++;
-  };
   export default {
     name: "TodoHeader",
     data() {
@@ -24,10 +20,8 @@
     methods: {
       pushTodoItem() {
         const todoItem = {
-          id: getId(),
           value: this.textValue,
           finished: false,
-          createTime: new Date()
         };
         this.$store.dispatch('pushTodoItem', todoItem)
         this.textValue = ''
