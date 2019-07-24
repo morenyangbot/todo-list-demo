@@ -28,6 +28,6 @@ yarn build
 
 cp -r dist/* ~/prod/vue-todo-list/
 
-# nginx -s reload
+sudo nginx -s reload
 echo "Deploy application successfully"
 
