@@ -15,7 +15,7 @@
         @blur="(e) => handleTodoItemValueChange(item, e)"
         @keypress.enter="handleEnter"
       ></div>
-      <!-- <div class="create-time">{{createDate}}</div> -->
+      <div class="create-time">{{createDate}}</div>
       <div class="delete-item" @click="()=>handleDeleteItem(item)">×</div>
     </div>
   </li>

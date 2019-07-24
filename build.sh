@@ -20,10 +20,12 @@ else
   exit 1
 fi
 
+rm -r dist
+
+
 yarn install
 yarn build
 
-rm -r dist
 cp -r dist/* ~/prod/vue-todo-list/
 
 # nginx -s reload
