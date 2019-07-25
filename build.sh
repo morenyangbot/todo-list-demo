@@ -30,4 +30,3 @@ cp -r dist/* /home/yangteng/prod/vue-todo-list/
 
 sudo nginx -s reload
 echo "Deploy application successfully"
-
