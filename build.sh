@@ -1,7 +1,7 @@
 #!/bin/bash
 
-git fetch --all
-git reset --hard origin/async
+# git fetch --all
+# git reset --hard origin/async
 
 # if [ $NVM_DIR ]
 # then echo "Your nvm dir is $NVM_DIR";
@@ -26,7 +26,7 @@ rm -r dist
 yarn install
 yarn build
 
-cp -r dist/* /home/yangteng/prod/vue-todo-list/
+cp -r dist/* /webapp/vue-todo-list/
 
 sudo nginx -s reload
 echo "Deploy application successfully"
