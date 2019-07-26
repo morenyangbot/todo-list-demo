@@ -26,7 +26,7 @@ rm -r dist
 yarn install
 yarn build
 
-cp -r dist/* /webapp/vue-todo-list/
+#cp -r dist/* /webapp/vue-todo-list/
 
-sudo nginx -s reload
-echo "Deploy application successfully"
+#sudo nginx -s reload
+#echo "Deploy application successfully"
